@@ -7,6 +7,7 @@ from humanize import intword
 
 fields_good_name = {
     "rank": "Rank",
+    "name": "Name",
     "symbol": "Symbol",
     "price": "Price (USD)",
     "percent_change_24h": "Change (24H)",
@@ -38,7 +39,7 @@ class Colors:
                 item[4] = Colors.GREEN + item[4] + '%' + Colors.ENDLINE
 
 
-def process_data(data, fields=['rank', 'symbol', 'price_usd', 'percent_change_24h', 'percent_change_1h', 'market_cap_usd'],
+def process_data(data, fields=['rank', 'name', 'symbol', 'price_usd', 'percent_change_24h', 'percent_change_1h', 'market_cap_usd'],
                  currency='USD', humanize=True):
 
     if currency != 'USD':
@@ -77,6 +78,8 @@ def find_data(data, symbols):
     filtered_items = []
     for item in data:
         if item['symbol'] in symbols:
+            filtered_items.append(item)
+        if item['name'].upper() in symbols:
             filtered_items.append(item)
 
     return filtered_items

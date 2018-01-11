@@ -62,6 +62,10 @@ class TestPycoinmon(unittest.TestCase):
         self.assertEqual(len(filtered_data), 2)
         filtered_data = common.find_data(self.response, ['BTC', 'eth', 'ltc'])
         self.assertEqual(len(filtered_data), 2)
+        filtered_data = common.find_data(self.response, ['Bitcoin'])
+        self.assertEqual(len(filtered_data), 1)
+        filtered_data = common.find_data(self.response, ['Bitcoin', 'Ethereum'])
+        self.assertEqual(len(filtered_data), 2)
 
     def test_tabulate_data(self):
         tabulated_data = common.process_data(self.response)
@@ -71,11 +75,12 @@ class TestPycoinmon(unittest.TestCase):
             self.assertEqual(len(item), len(tabulated_data[0]))
 
         self.assertEqual(tabulated_data[0][0], common.fields_good_name["rank"])
-        self.assertEqual(tabulated_data[0][1], common.fields_good_name["symbol"])
-        self.assertEqual(tabulated_data[0][2], common.fields_good_name["price"])
-        self.assertEqual(tabulated_data[0][3], common.fields_good_name["percent_change_24h"])
-        self.assertEqual(tabulated_data[0][4], common.fields_good_name["percent_change_1h"])
-        self.assertEqual(tabulated_data[0][5], common.fields_good_name["market_cap"])
+        self.assertEqual(tabulated_data[0][1], common.fields_good_name["name"])
+        self.assertEqual(tabulated_data[0][2], common.fields_good_name["symbol"])
+        self.assertEqual(tabulated_data[0][3], common.fields_good_name["price"])
+        self.assertEqual(tabulated_data[0][4], common.fields_good_name["percent_change_24h"])
+        self.assertEqual(tabulated_data[0][5], common.fields_good_name["percent_change_1h"])
+        self.assertEqual(tabulated_data[0][6], common.fields_good_name["market_cap"])
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
