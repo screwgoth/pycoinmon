@@ -29,14 +29,14 @@ class Colors:
         data[0][len(data[0]) - 1] = data[0][len(data[0]) - 1] + Colors.ENDLINE
 
         for item in data[1:]:
-            if re.search('-\d+\.\d+', item[3]):
-                item[3] = Colors.RED + item[3] + '%' + Colors.ENDLINE
-            else:
-                item[3] = Colors.GREEN + item[3] + '%' + Colors.ENDLINE
             if re.search('-\d+\.\d+', item[4]):
                 item[4] = Colors.RED + item[4] + '%' + Colors.ENDLINE
             else:
                 item[4] = Colors.GREEN + item[4] + '%' + Colors.ENDLINE
+            if re.search('-\d+\.\d+', item[5]):
+                item[5] = Colors.RED + item[5] + '%' + Colors.ENDLINE
+            else:
+                item[5] = Colors.GREEN + item[5] + '%' + Colors.ENDLINE
 
 
 def process_data(data, fields=['rank', 'name', 'symbol', 'price_usd', 'percent_change_24h', 'percent_change_1h', 'market_cap_usd'],
